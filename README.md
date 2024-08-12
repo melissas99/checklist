@@ -15,3 +15,12 @@ Checklistcat è un'applicazione di gestione delle attività realizzata con Node.
 ## Modalità Scura
 
 L'app supporta la modalità scura e chiara. Il toggle per cambiare modalità è posizionato in alto a sinistra. Assicurati che il pulsante e le icone siano visibili e stilizzati correttamente in entrambe le modalità.
+
+
+## Screenshots
+<p>
+<img src="./screenshots/Screenshot1.png" width="200">
+<img src="./screenshots/Screenshot2.png" width="200">
+<img src="./screenshots/Screenshot3.png" width="200">
+<img src="./screenshots/Screenshot4.png" width="200">
+</p>
