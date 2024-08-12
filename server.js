@@ -8,7 +8,7 @@ const PORT = 3000;
 const checklistFile = 'checklist.json';
 
 // Palette di colori personalizzata
-const colors = ['#B1AFFF', '#BBE9FF', '#FFFED3', '#FFE9D0'];
+const colors = ['#B1AFFF', '#BBE9FF', '#FFFED3', '#DFCCFB'];
 
 // Middleware per gestire i dati POST
 app.use(express.urlencoded({ extended: true }));
