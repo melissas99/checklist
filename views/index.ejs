@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <button id="darkModeToggle" class="dark-mode-toggle">
+            <i class="fas fa-moon"></i> <!-- Icona per la modalità scura -->
+        </button>
+        <img src="/images/cat.png" alt="Cat Icon" class="title-icon">
+        <h1>Lucino's Family Checklist</h1>
+
+        <!-- Modulo per aggiungere un nuovo elemento -->
+        <form action="/add" method="POST" id="checklistForm">
+            <input type="text" name="item" placeholder="New item" required>
+            <button type="submit">Add</button>
+        </form>
+        <ul>
+            <% checklist.forEach((item, index) => { %>
+                <li style="background-color: <%= item.color %>;">
+                    <input type="checkbox" id="item-<%= index %>" class="completed-checkbox" data-index="<%= index %>">
+                    <label for="item-<%= index %>"><%= item.text %></label>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+    <script>
+        // Gestisce la modalità scura
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Controlla se la modalità scura è attiva
+        const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+
+        // Applica il tema scuro se necessario
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.container').classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Icona per modalità chiara
+        }
+
+        // Gestisce il clic sul pulsante della modalità scura
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.container').classList.toggle('dark-mode');
+
+            const darkModeEnabled = document.body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', darkModeEnabled);
+            darkModeToggle.innerHTML = darkModeEnabled ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+
+        // Gestisce la capitalizzazione della prima lettera
+        document.getElementById('checklistForm').addEventListener('submit', function (e) {
+            var input = document.querySelector('input[name="item"]');
+            var value = input.value;
+            if (value) {
+                input.value = value.charAt(0).toUpperCase() + value.slice(1);
+            }
+        });
+
+        // Gestisce il cambio dello stato del checkbox
+        document.querySelectorAll('.completed-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (this.checked) {
+                    fetch('/remove', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({ index: this.dataset.index })
+                    }).then(response => {
+                        if (response.ok) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

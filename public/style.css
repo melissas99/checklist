@@ -1,0 +1,138 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 30px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: #333; /* Default text color */
+}
+
+.completed-checkbox {
+    margin-right: 10px;
+}
+
+.completed-checkbox:checked + label {
+    text-decoration: line-through;
+    color: #a9a9a9;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 13px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #41444B;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+button[type="submit"] {
+    background: #41444B;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background: #52575D;
+    transform: scale(1.1);
+}
+
+.title-icon {
+    display: block;
+    width: 50px;
+    height: auto;
+    margin: 0 auto 10px;
+    margin-top: 15px;
+    transition: filter 0.3s ease;
+}
+
+.dark-mode .title-icon {
+    filter: invert(1) brightness(0.8); /* Inverte i colori e regola la luminosità per immagini */
+}
+
+.dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #41444B;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dark-mode-toggle:hover {
+    background: #52575D;
+    transform: scale(1.1);
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+.container.dark-mode {
+    background: #444;
+    color: #f4f4f4;
+}
+
+ul.dark-mode li {
+    background: #555;
+    color: #f4f4f4;
+}
+
+.button.dark-mode {
+    background: #666;
+    color: #f4f4f4;
+}
+
+.dark-mode-toggle i {
+    color: #fff; 
+}
